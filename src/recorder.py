@@ -25,8 +25,6 @@ try:
 except KeyboardInterrupt:
     pass
 
-print(frames)
-
 print("recording stopped")
 
 stream.stop_stream()
