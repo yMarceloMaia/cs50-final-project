@@ -1,28 +1,30 @@
 import pyaudio
 import wave
+import keyboard
 
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 
-p = pyaudio.PyAudio()
-
-stream = p.open(
-    format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK
-)
-
-frames = []
-
 
 def recorder():
+    p = pyaudio.PyAudio()
+    stream = p.open(
+        format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK
+    )
+
+    frames = []
+
+    print("Press 'space' to recorder")
+    keyboard.wait("space")
     print("recording...")
-    try:
-        while True:
+    while True:
+        if keyboard.is_pressed("space"):
             data = stream.read(CHUNK)
             frames.append(data)
-    except KeyboardInterrupt:
-        pass
+        else:
+            break
 
     print("recording stopped")
 

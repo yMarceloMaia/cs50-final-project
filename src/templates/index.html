@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Recorder and Translator</title>
+</head>
+
+<body>
+    <h1>Audio Recorder and Translator</h1>
+    <button onclick="startRecording()">Start Recording</button>
+    <div id="output"></div>
+
+    <script>
+        function startRecording() {
+            fetch('/start_recording')
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data)
+                }).catch((error) => {
+                    console.log(error)
+                });
+        }
+    </script>
+</body>
+
+</html>
