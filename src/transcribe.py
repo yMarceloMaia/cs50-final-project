@@ -12,5 +12,4 @@ def transcribe():
         audio = recognizer.record(source)
 
     text = recognizer.recognize_google(audio_data=audio, language="pt-BR")
-
     return text

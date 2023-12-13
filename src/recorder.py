@@ -15,7 +15,6 @@ def recorder():
     )
 
     frames = []
-
     print("Press 'space' to recorder")
     keyboard.wait("space")
     print("recording...")
@@ -26,6 +25,7 @@ def recorder():
         else:
             break
 
+    pass
     print("recording stopped")
 
     stream.stop_stream()

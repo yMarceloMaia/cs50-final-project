@@ -5,9 +5,10 @@ def translater(input):
     if not input:
         print("Texto de entrada vazio ou nulo.")
         return None
-
+    
     translator = Translator()
 
+    
     try:
         output = translator.translate(input, dest='en')
         
