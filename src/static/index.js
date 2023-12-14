@@ -12,7 +12,6 @@ function updateCounter() {
     counter.innerHTML = `Translating... ${recordingCounter} seconds`;
 };
 
-
 function startRecording() {
     activated = true
     clearCounter()
@@ -24,7 +23,6 @@ function startRecording() {
 
     window.addEventListener('keydown', (e) => handleKeyPress(e, true));
     window.addEventListener('keyup', (e) => handleKeyPress(e, false));
-
 
     fetch('/start_recording')
         .then(response => response.text())

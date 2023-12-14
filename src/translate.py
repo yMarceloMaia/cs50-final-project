@@ -7,7 +7,6 @@ def translater(input):
         return None
     
     translator = Translator()
-
     
     try:
         output = translator.translate(input, dest='en')

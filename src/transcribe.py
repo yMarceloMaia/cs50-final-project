@@ -1,8 +1,6 @@
 import speech_recognition as sr
-# command install speech_recognition: pip install SpeechRecognition
 
 def transcribe():
-    # instanciando e limitando o threshold
     recognizer = sr.Recognizer()
     recognizer.energy_threshold = 300
 

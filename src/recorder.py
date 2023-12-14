@@ -7,7 +7,6 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 
-
 def recorder():
     p = pyaudio.PyAudio()
     stream = p.open(
