@@ -5,100 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Recorder and Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='/index.js') }}" defer></script>
 </head>
 
 <body>
     <h1>Audio Recorder and Translator</h1>
-    <button onclick="startRecording()">Prepare</button>
-    <p id="hold-p"></p>
-    <p id="counter"></p>
-
-    <audio id="audioPlayer" controls>
-        <!-- Aqui será inserido o áudio recebido da requisição -->
-
-    </audio>
-
-    <button onclick="getAudio()">pegar audio</button>
-
-
-    <script>
-        const counter = document.getElementById('counter');
-        let recordingCounter = 0;
-        let intervalId;
-
-        function updateCounter() {
-            recordingCounter = recordingCounter + 1;
-            counter.innerHTML = `Recording... ${recordingCounter} seconds`;
-        };
-
-
-        function startRecording() {
-            intervalId = null
-            const p = document.getElementById('hold-p')
-            if (p.innerHTML === '') p.innerHTML = "Hold space to record"
-
-            window.addEventListener('keydown', (e) => handleKeyPress(e, true));
-            window.addEventListener('keyup', (e) => handleKeyPress(e, false));
-
-
-            fetch('/start_recording')
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data)
-                    counter.innerHTML = "Its done"
-                    recordingCounter = 0
-                    
-                    const audioElement = new Audio("");
-                    audioElement.controls = true;
-                    
-                    // // Adicione o elemento de áudio ao seu documento
-                    // const audioContainer = document.getElementById('audioPlayer');
-                    // audioContainer.innerHTML = ''; // Limpa o conteúdo existente
-                    // audioContainer.appendChild(audioElement);
-                    
-                    intervalId = null
-                    setTimeout(() => {
-                        console.log("Delayed for 1 second.");
-                        getAudio()
-                    }, "1000");
-                    return
-                }).catch((error) => {
-                    console.log(error)
-                    intervalId = null
-                    counter.innerHTML = "Error"
-                    recordingCounter = 0
-                });
-        }
-
-        function getAudio() {
-            fetch('/get_audio')
-                .then(response => response.blob())
-                .then(blob => {
-                    console.log(blob)
-                    const audioUrl = URL.createObjectURL(blob);
-                    const audioPlayer = document.getElementById('audioPlayer');
-                    audioPlayer.src = audioUrl;
-
-                }).catch((error) => {
-                    console.log(error)
-                    console.log("aquiiiiiii")
-                });
-        }
-
-        const handleKeyPress = (e, recording) => {
-            const keyCode = e.which || e.keyCode || 0;
-            const space = keyCode === 32;
-            const p = document.getElementById('hold-p');
-
-            if (space) {
-                p.innerHTML = recording ? 'Recording' : 'Recording stopped';
-                if (!recording) {
-                    intervalId = setInterval(updateCounter, 1000)
-                }
-            }
-        };
-
-    </script>
+    <button id="start-recording" onclick="startRecording()">Record</button>
+    <section>
+        <p id="hold-p"></p>
+        <p id="counter"></p>
+    </section>
+    <audio id="audioPlayer" controls></audio>
 </body>
 
 </html>

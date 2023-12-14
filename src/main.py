@@ -9,6 +9,5 @@ def recorder_and_translate_audio():
     recorder()
     text = transcribe()
     textTranslated = translater(text)
-    # text_to_speech(textTranslated.text)
     text_to_speech_ai(textTranslated.text)
      
