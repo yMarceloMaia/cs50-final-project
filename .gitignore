@@ -1,4 +1,6 @@
 .venv
+.env
 **.wav
 **.mp3
-**__pycache__
+**__pycache__**
+XTTS-v2

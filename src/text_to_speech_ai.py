@@ -2,20 +2,24 @@ import torch
 from TTS.tts.configs.xtts_config import XttsConfig
 from TTS.tts.models.xtts import Xtts
 import wave
+import os
+
+ROOT_FILE_PATH = os.getcwd()
+XTTSV2_FILE_PATH = f"{os.getcwd()}/XTTS-v2"
 
 def text_to_speech_ai(text):
     print("Starting audio ai")
-    # device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     config = XttsConfig()
-    config.load_json("D:\XTTS-v2/config.json")
+    config.load_json(f"{XTTSV2_FILE_PATH}/config.json")
     model = Xtts.init_from_config(config)
-    model.load_checkpoint(config, checkpoint_dir="D:\XTTS-v2", eval=True)
-    # model.cuda(device)
+    model.load_checkpoint(config, checkpoint_dir=XTTSV2_FILE_PATH, eval=True)
+    torch.cuda.is_available() and model.cuda(device)
 
     outputs = model.synthesize(
         text,
         config,
-        speaker_wav="D:\CS50-FINAL-PROJECT/output.wav",
+        speaker_wav=f"{ROOT_FILE_PATH}/output.wav",
         gpt_cond_len=3,
         language="en",
     )

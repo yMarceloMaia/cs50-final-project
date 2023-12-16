@@ -1,7 +1,10 @@
 from flask import Flask, render_template, jsonify, send_file
 from main import recorder_and_translate_audio
+import os
 
 app = Flask(__name__)
+
+ROOT_FILE_PATH = os.getcwd()
 
 @app.route('/')
 def index():
@@ -20,7 +23,7 @@ def start_recording():
 @app.route('/get_audio', methods=['GET'])
 def get_audio():
     try:
-        audio_path = 'D:\cs50-final-project/tts.wav'
+        audio_path = f"{ROOT_FILE_PATH}/tts.wav"
         return send_file(audio_path, as_attachment=True)
     except Exception as e:
         return f'Erro ao obter o arquivo de áudio: {str(e)}', 500
