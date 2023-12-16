@@ -5,12 +5,12 @@ import wave
 
 def text_to_speech_ai(text):
     print("Starting audio ai")
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    # device = "cuda" if torch.cuda.is_available() else "cpu"
     config = XttsConfig()
     config.load_json("D:\XTTS-v2/config.json")
     model = Xtts.init_from_config(config)
     model.load_checkpoint(config, checkpoint_dir="D:\XTTS-v2", eval=True)
-    model.cuda(device)
+    # model.cuda(device)
 
     outputs = model.synthesize(
         text,
