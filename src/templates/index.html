@@ -5,24 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Recorder and Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='/index.js') }}" defer></script>
 </head>
 
 <body>
     <h1>Audio Recorder and Translator</h1>
-    <button onclick="startRecording()">Start Recording</button>
-    <div id="output"></div>
-
-    <script>
-        function startRecording() {
-            fetch('/start_recording')
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data)
-                }).catch((error) => {
-                    console.log(error)
-                });
-        }
-    </script>
+    <button id="start-recording" onclick="startRecording()">Record</button>
+    <section>
+        <p id="hold-p"></p>
+        <p id="counter"></p>
+    </section>
+    <audio id="audioPlayer" controls></audio>
 </body>
 
 </html>

@@ -7,7 +7,6 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 
-
 def recorder():
     p = pyaudio.PyAudio()
     stream = p.open(
@@ -15,7 +14,6 @@ def recorder():
     )
 
     frames = []
-
     print("Press 'space' to recorder")
     keyboard.wait("space")
     print("recording...")
@@ -26,6 +24,7 @@ def recorder():
         else:
             break
 
+    pass
     print("recording stopped")
 
     stream.stop_stream()
