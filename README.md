@@ -1,5 +1,5 @@
 # Translator and Voice Cloner
-## Video Demo: 
+## Video Demo: https://youtu.be/z_vU2fBJ_gs
 
 ## Description (ENGLISH):
 Final project for Harvard's CS50 course, done in pairs by Yuzo Santana and Marcelo Maia.
